@@ -1,6 +1,6 @@
 <h1 align="center">Fundamentals</h1>
 <div align="center">
-	Essential Data Structures and Algorithms written in Jav and hopefully python and c++ in the future.
+	Essential Data Structures and Algorithms written in Java and hopefully python and c++ in the future.
 </div>
 
 # Algorithms
