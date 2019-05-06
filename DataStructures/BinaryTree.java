@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.Stack;
+
 public class BinaryTree
 {
     Node root;
@@ -81,5 +84,76 @@ public class BinaryTree
         ret += __getSum(n.left);
         ret += __getSum(n.right);
         return ret;
+    }
+
+    public int height()
+    {
+        return __height(root);
+    }
+
+    private int __height(Node n)
+    {
+        if (n == null)
+        {
+            return 0;
+        }
+        else
+        {
+            rightHeight = __height(n.right);
+            leftHeight = __height(n.left);
+
+            if(rightHeight > leftHeight)
+            {
+                return rightHeight + 1;
+            }
+            else
+            {
+                return leftHeight + 1;
+            }
+        }
+    }
+
+    public Iterator iterator()
+    {
+        return new BinaryTreeIterator();
+    }
+
+    private class BinaryTreeIterator implements Iterable
+    {
+        private Stack<Node> s;
+        public BinaryTreeIterator()
+        {
+            if (root != null)
+            {
+                s.push(root);
+            }
+        }
+
+        public boolean hasNext()
+        {
+            if (s.isEmpty())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public int next()
+        {
+            if (hasNext())
+            {
+                Node ret = s.pop();
+                if(ret.right != null)
+                {
+                    s.push(ret.right);
+                }
+                if(ret.left != null)
+                {
+                    s.push(r.left);
+                }
+                return ret.data;
+            }
+            return null;
+        }
     }
 }

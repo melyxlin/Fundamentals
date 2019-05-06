@@ -1,4 +1,6 @@
+import java.util.Iterator;
 public class LinkedList
+
 {
     public Node head;
     private class Node
@@ -173,6 +175,43 @@ public class LinkedList
                 currentNode = currentNode.next;
             }
             previousNode = other.head;
+        }
+    }
+
+    public Iterator iterator()
+    {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterable
+    {
+        private Node currentNode;
+        public LinkedListIterator()
+        {
+            this.currentNode = this.head;
+        }
+
+        public booleanHasNext()
+        {
+            if(this.currentNode == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public int next()
+        {
+            if (hasNext())
+            {
+                Node ret = currentNode;
+                this.currentNode = this.currentNode.next;
+                return ret.data;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 
