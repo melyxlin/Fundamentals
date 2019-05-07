@@ -127,6 +127,22 @@ public class BinaryTree
 		int leftPart=_findMax(n.left);
 		int rightPart=_findMax(n.right);
 		return Math.max(Math.max(rootValue, leftPart),rightPart);
+    }
+    
+    public int findMin()
+	{
+		return _findMin(root);
+		
+	}
+
+	private int _findMin(Node n)
+	{
+		if (n==null)
+			return Integer.MIN_VALUE;
+		int rootValue=n.data;
+		int leftPart=_findMin(n.left);
+		int rightPart=_findMin(n.right);
+		return Math.min(Math.min(rootValue, leftPart),rightPart);
 	}
 	
 
