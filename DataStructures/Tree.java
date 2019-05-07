@@ -1,3 +1,4 @@
+import java.util.Iterator;
 import java.util.LinkedList;
 public class Trees
 {
@@ -64,5 +65,49 @@ public class Trees
         }
         ret += n.data + "/n";
         return ret;
+    }
+
+    public Iterator iterator()
+    {
+        return new TreeIterator();
+    }
+
+    private class TreeIterator implements Iterable
+    {
+        private Stack<Node> s;
+
+        public TreeIterator()
+        {
+            if(this.root != null)
+            {
+                s.push(root);
+            }
+        }
+
+        public hasNext()
+        {
+            if(s.isEmpty())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public int next()
+        {
+            if (hasNext())
+            {
+                Node ret = s.pop();
+                for (Node child : children)
+                {
+                    s.push(child);
+                }
+                return ret.data;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

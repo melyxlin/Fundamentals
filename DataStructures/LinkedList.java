@@ -174,7 +174,7 @@ public class LinkedList
                 previousNode = currentNode;
                 currentNode = currentNode.next;
             }
-            previousNode = other.head;
+            previousNode.next = other.head;
         }
     }
 
