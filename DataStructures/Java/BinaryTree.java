@@ -113,6 +113,23 @@ public class BinaryTree
         }
     }
 
+    public int findMax()
+	{
+		return _findMax(root);
+		
+	}
+
+	private int _findMax(Node n)
+	{
+		if (n==null)
+			return Integer.MIN_VALUE;
+		int rootValue=n.data;
+		int leftPart=_findMax(n.left);
+		int rightPart=_findMax(n.right);
+		return Math.max(Math.max(rootValue, leftPart),rightPart);
+	}
+	
+
     public Iterator iterator()
     {
         return new BinaryTreeIterator();
