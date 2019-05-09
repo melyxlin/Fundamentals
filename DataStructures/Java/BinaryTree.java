@@ -20,7 +20,7 @@ public class BinaryTree {
         return __printPreOrder(root, 0);
     }
 
-    private String printPreOrder(Node n, int depth) {
+    private String __printPreOrder(Node n, int depth) {
         String ret = "";
         if (n == null) {
             return ret;
@@ -31,7 +31,7 @@ public class BinaryTree {
             i++;
         }
         ret += n.data + "/n";
-        ret += __prinPreOrder(n.left, depth + 1);
+        ret += __printPreOrder(n.left, depth + 1);
         ret += __printPreOrder(n.right, depth + 1);
         return ret;
     }
@@ -40,7 +40,7 @@ public class BinaryTree {
         return __printPostOrder(root, 0);
     }
 
-    private __String printPostOrder(Node n, int depth) {
+    private String __printPostOrder(Node n, int depth) {
         String ret = "";
         if (n == null) {
             return ret;
@@ -80,8 +80,8 @@ public class BinaryTree {
         if (n == null) {
             return 0;
         } else {
-            rightHeight = __height(n.right);
-            leftHeight = __height(n.left);
+            int rightHeight = __height(n.right);
+            int leftHeight = __height(n.left);
 
             if (rightHeight > leftHeight) {
                 return rightHeight + 1;
@@ -123,7 +123,7 @@ public class BinaryTree {
         return new BinaryTreeIterator();
     }
 
-    private class BinaryTreeIterator implements Iterable {
+    private class BinaryTreeIterator implements Iterator {
         private Stack<Node> s;
 
         public BinaryTreeIterator() {
@@ -139,14 +139,14 @@ public class BinaryTree {
             return true;
         }
 
-        public int next() {
+        public Object next() {
             if (hasNext()) {
                 Node ret = s.pop();
                 if (ret.right != null) {
                     s.push(ret.right);
                 }
                 if (ret.left != null) {
-                    s.push(r.left);
+                    s.push(ret.left);
                 }
                 return ret.data;
             }

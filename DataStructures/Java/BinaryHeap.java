@@ -65,7 +65,7 @@ public class BinaryHeap<T extends Comparable<T>> {
             if (hasRightChild(index) && array[leftIndex(index)].compareTo(array[rightIndex(index)]) > 0) {
                 smallerChild = rightIndex(index);
             }
-            if (array[index].compareTo(array[smaller])) {
+            if (array[index].compareTo(array[smallerChild]) > 0) {
                 swap(index, smallerChild);
             } else {
                 break;
@@ -114,7 +114,7 @@ public class BinaryHeap<T extends Comparable<T>> {
     }
 
     public T parent(int index) {
-        return array(parentIndex(index));
+        return array[parentIndex(index)];
     }
 
     public int parentIndex(int index) {

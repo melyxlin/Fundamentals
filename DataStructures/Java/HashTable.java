@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class HashTable<K, V> {
     private class HashNode {
         K key;

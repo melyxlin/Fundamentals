@@ -1,20 +1,19 @@
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Stack;
 
-public class Trees {
+public class Tree {
     public Node root;
 
     private class Node {
-        private static final LinkedList LINKED_LIST = new LinkedList();
         private int data;
         private LinkedList<Node> children;
 
         public Node(int d) {
             data = d;
-            children = LINKED_LIST;
         }
 
-        public addChild(Node child)
+        public void addChild(Node child)
         {
             children.add(child);
         }
@@ -62,16 +61,16 @@ public class Trees {
         return new TreeIterator();
     }
 
-    private class TreeIterator implements Iterable {
+    private class TreeIterator implements Iterator {
         private Stack<Node> s;
 
         public TreeIterator() {
-            if (this.root != null) {
+            if (root != null) {
                 s.push(root);
             }
         }
 
-        public hasNext()
+        public boolean hasNext()
         {
             if(s.isEmpty())
             {
@@ -80,15 +79,15 @@ public class Trees {
             return true;
         }
 
-        public int next() {
+        public Object next() {
             if (hasNext()) {
                 Node ret = s.pop();
-                for (Node child : children) {
+                for (Node child : ret.children) {
                     s.push(child);
                 }
                 return ret.data;
             } else {
-                return null;
+                return 0;
             }
         }
     }

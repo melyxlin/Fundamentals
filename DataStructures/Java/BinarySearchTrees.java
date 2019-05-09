@@ -14,7 +14,7 @@ public class BinarySearchTrees {
     }
 
     public void add(int item) {
-        root = __add(root, item);
+        __add(root, item);
     }
 
     private void __add(Node n, int item) {
@@ -30,12 +30,12 @@ public class BinarySearchTrees {
     }
 
     public int search(int item) {
-        return __search(n, item);
+        return __search(root, item);
     }
 
     private int __search(Node n, int item) {
         if (n == null) {
-            return null;
+            return -1;
         } else if (n.data == item) {
             return item;
         } else if (item < n.data) {
@@ -47,7 +47,7 @@ public class BinarySearchTrees {
 
     public int findMax() {
         if (root == null) {
-            return null;
+            return -1;
         }
         int max = root.data;
         Node currentNode = root.right;
@@ -60,7 +60,7 @@ public class BinarySearchTrees {
 
     public int findMin() {
         if (root == null) {
-            return null;
+            return -1;
         }
         int min = root.data;
         Node currentNode = root.left;

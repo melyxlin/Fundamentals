@@ -23,10 +23,10 @@ public class LinkedList
             Node currentNode = this.head;
             Node previousNode = null;
             while (currentNode != null) {
-                prevNode = currentNode;
+                previousNode = currentNode;
                 currentNode = currentNode.next;
             }
-            prevNode.next = newNode;
+            previousNode.next = newNode;
         }
     }
 
@@ -53,7 +53,7 @@ public class LinkedList
     public int length() {
         int length = 0;
         Node currentNode = head;
-        while (current != null) {
+        while (currentNode != null) {
             length++;
             currentNode = currentNode.next;
         }
@@ -74,26 +74,26 @@ public class LinkedList
     public String toString() {
         String ret = "";
         Node currentNode = this.head;
-        while (current != null) {
-            ret += " " + current.data;
-            current = current.next;
+        while (currentNode != null) {
+            ret += " " + currentNode.data;
+            currentNode = currentNode.next;
         }
         return ret;
     }
 
     public boolean equals(LinkedList other) {
-        if (other.length() != this.length) {
+        if (other.length() != this.length()) {
             return false;
         }
         Node currentNode1 = this.head;
         Node currentNode2 = other.head;
 
-        while (current1 != null) {
+        while (currentNode1 != null) {
             if (currentNode1.data != currentNode2.data) {
                 return false;
             }
-            current1 = currentNode1.next;
-            current2 = currentNode2.next;
+            currentNode1 = currentNode1.next;
+            currentNode2 = currentNode2.next;
         }
         return true;
     }
@@ -101,7 +101,7 @@ public class LinkedList
     public boolean contains(int item) {
         Node currentNode = this.head;
         while (currentNode != null) {
-            if (currentNode.item == item) {
+            if (currentNode.data == item) {
                 return true;
             }
             currentNode = currentNode.next;
@@ -116,8 +116,8 @@ public class LinkedList
         }
         Node currentNode = this.head;
         Node nextNode = this.head.next;
-        while (next != null) {
-            if (currentNode.item == nextNode.item) {
+        while (nextNode != null) {
+            if (currentNode.data == nextNode.data) {
                 currentNode.next = nextNode.next;
                 nextNode = nextNode.next;
             } else {
@@ -145,14 +145,14 @@ public class LinkedList
         return new LinkedListIterator();
     }
 
-    private class LinkedListIterator implements Iterable {
+    private class LinkedListIterator implements Iterator{
         private Node currentNode;
 
         public LinkedListIterator() {
-            this.currentNode = this.head;
+            this.currentNode = head;
         }
 
-        public booleanHasNext()
+        public boolean HasNext()
         {
             if(this.currentNode == null)
             {
@@ -161,7 +161,7 @@ public class LinkedList
             return true;
         }
 
-        public int next() {
+        public Object next() {
             if (hasNext()) {
                 Node ret = currentNode;
                 this.currentNode = this.currentNode.next;
@@ -169,6 +169,11 @@ public class LinkedList
             } else {
                 return null;
             }
+        }
+
+        @Override
+        public boolean hasNext() {
+            return false;
         }
     }
 
