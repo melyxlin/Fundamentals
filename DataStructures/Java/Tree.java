@@ -1,16 +1,15 @@
 import java.util.Iterator;
 import java.util.LinkedList;
-public class Trees
-{
+
+public class Trees {
     public Node root;
-    private class Node
-    {
+
+    private class Node {
         private static final LinkedList LINKED_LIST = new LinkedList();
-		private int data;
+        private int data;
         private LinkedList<Node> children;
 
-        public Node(int d)
-        {
+        public Node(int d) {
             data = d;
             children = LINKED_LIST;
         }
@@ -21,45 +20,37 @@ public class Trees
         }
     }
 
-    public String printPreOrder()
-    {
+    public String printPreOrder() {
         return __printPreOrder(root, 0);
     }
 
-    private String __printPreOrder(Node n, int depth)
-    {
+    private String __printPreOrder(Node n, int depth) {
         String ret = "";
         int i = 0;
-        while (i < depth)
-        {
+        while (i < depth) {
             ret += " ";
             i++;
         }
 
         ret += n.data + "/n";
-        for (Node child : n.children)
-        {
+        for (Node child : n.children) {
             ret += __printPreOrder(child, depth + 1);
         }
         return ret;
-        
+
     }
 
-    public String __printPostOrder()
-    {
+    public String __printPostOrder() {
         return __printPostOrder(root, 0);
     }
 
-    private String __printPostOrder(Node n, int depth)
-    {
+    private String __printPostOrder(Node n, int depth) {
         String ret = "";
-        for (Node child : n.children)
-        {
+        for (Node child : n.children) {
             ret += __printPostOrder(child, depth + 1);
         }
         int i = 0;
-        while (i < depth)
-        {
+        while (i < depth) {
             ret += " ";
             i++;
         }
@@ -67,19 +58,15 @@ public class Trees
         return ret;
     }
 
-    public Iterator iterator()
-    {
+    public Iterator iterator() {
         return new TreeIterator();
     }
 
-    private class TreeIterator implements Iterable
-    {
+    private class TreeIterator implements Iterable {
         private Stack<Node> s;
 
-        public TreeIterator()
-        {
-            if(this.root != null)
-            {
+        public TreeIterator() {
+            if (this.root != null) {
                 s.push(root);
             }
         }
@@ -93,19 +80,14 @@ public class Trees
             return true;
         }
 
-        public int next()
-        {
-            if (hasNext())
-            {
+        public int next() {
+            if (hasNext()) {
                 Node ret = s.pop();
-                for (Node child : children)
-                {
+                for (Node child : children) {
                     s.push(child);
                 }
                 return ret.data;
-            }
-            else
-            {
+            } else {
                 return null;
             }
         }

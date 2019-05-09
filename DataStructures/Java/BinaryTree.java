@@ -1,39 +1,32 @@
 import java.util.Iterator;
 import java.util.Stack;
 
-public class BinaryTree
-{
+public class BinaryTree {
     Node root;
 
-    private class Node
-    {
+    private class Node {
         private int data;
         private Node right;
         private Node left;
 
-        public Node(int d)
-        {
+        public Node(int d) {
             this.data = d;
             this.right = null;
             this.left = null;
         }
     }
 
-    public String printPreOrder()
-    {
+    public String printPreOrder() {
         return __printPreOrder(root, 0);
     }
 
-    private String printPreOrder(Node n, int depth)
-    {
+    private String printPreOrder(Node n, int depth) {
         String ret = "";
-        if (n == null)
-        {
+        if (n == null) {
             return ret;
         }
         int i = 0;
-        while (i < depth)
-        {
+        while (i < depth) {
             ret += " ";
             i++;
         }
@@ -43,24 +36,20 @@ public class BinaryTree
         return ret;
     }
 
-    public String printPostOrder()
-    {
-        return __printPostOrder(root ,0);
+    public String printPostOrder() {
+        return __printPostOrder(root, 0);
     }
 
-    private __String printPostOrder(Node n, int depth)
-    {
+    private __String printPostOrder(Node n, int depth) {
         String ret = "";
-        if(n == null)
-        {
+        if (n == null) {
             return ret;
         }
         ret += __printPostOrder(n.left, depth + 1);
         ret += __printPostOrder(n.right, depth + 1);
 
         int i = 0;
-        while (i < depth)
-        {
+        while (i < depth) {
             ret += " ";
             i++;
         }
@@ -68,16 +57,13 @@ public class BinaryTree
         return ret;
     }
 
-    public int getSum()
-    {
+    public int getSum() {
         return __getSum(root);
     }
 
-    private int __getSum(Node n)
-    {
+    private int __getSum(Node n) {
         int ret = 0;
-        if (n == null)
-        {
+        if (n == null) {
             return ret;
         }
         ret += n.data;
@@ -86,102 +72,80 @@ public class BinaryTree
         return ret;
     }
 
-    public int height()
-    {
+    public int height() {
         return __height(root);
     }
 
-    private int __height(Node n)
-    {
-        if (n == null)
-        {
+    private int __height(Node n) {
+        if (n == null) {
             return 0;
-        }
-        else
-        {
+        } else {
             rightHeight = __height(n.right);
             leftHeight = __height(n.left);
 
-            if(rightHeight > leftHeight)
-            {
+            if (rightHeight > leftHeight) {
                 return rightHeight + 1;
-            }
-            else
-            {
+            } else {
                 return leftHeight + 1;
             }
         }
     }
 
-    public int findMax()
-	{
-		return _findMax(root);
-		
-	}
+    public int findMax() {
+        return _findMax(root);
 
-	private int _findMax(Node n)
-	{
-		if (n==null)
-			return Integer.MIN_VALUE;
-		int rootValue=n.data;
-		int leftPart=_findMax(n.left);
-		int rightPart=_findMax(n.right);
-		return Math.max(Math.max(rootValue, leftPart),rightPart);
     }
-    
-    public int findMin()
-	{
-		return _findMin(root);
-		
-	}
 
-	private int _findMin(Node n)
-	{
-		if (n==null)
-			return Integer.MIN_VALUE;
-		int rootValue=n.data;
-		int leftPart=_findMin(n.left);
-		int rightPart=_findMin(n.right);
-		return Math.min(Math.min(rootValue, leftPart),rightPart);
-	}
-	
+    private int _findMax(Node n) {
+        if (n == null)
+            return Integer.MIN_VALUE;
+        int rootValue = n.data;
+        int leftPart = _findMax(n.left);
+        int rightPart = _findMax(n.right);
+        return Math.max(Math.max(rootValue, leftPart), rightPart);
+    }
 
-    public Iterator iterator()
-    {
+    public int findMin() {
+        return _findMin(root);
+
+    }
+
+    private int _findMin(Node n) {
+        if (n == null)
+            return Integer.MIN_VALUE;
+        int rootValue = n.data;
+        int leftPart = _findMin(n.left);
+        int rightPart = _findMin(n.right);
+        return Math.min(Math.min(rootValue, leftPart), rightPart);
+    }
+
+    public Iterator iterator() {
         return new BinaryTreeIterator();
     }
 
-    private class BinaryTreeIterator implements Iterable
-    {
+    private class BinaryTreeIterator implements Iterable {
         private Stack<Node> s;
-        public BinaryTreeIterator()
-        {
-            if (root != null)
-            {
+
+        public BinaryTreeIterator() {
+            if (root != null) {
                 s.push(root);
             }
         }
 
-        public boolean hasNext()
-        {
-            if (s.isEmpty())
-            {
+        public boolean hasNext() {
+            if (s.isEmpty()) {
                 return false;
             }
             return true;
         }
 
-        public int next()
-        {
-            if (hasNext())
-            {
+        public int next() {
+            if (hasNext()) {
                 Node ret = s.pop();
-                if(ret.right != null)
-                {
+                if (ret.right != null) {
                     s.push(ret.right);
                 }
-                if(ret.left != null)
-                {
+                if (ret.left != null) {
                     s.push(r.left);
                 }
                 return ret.data;
