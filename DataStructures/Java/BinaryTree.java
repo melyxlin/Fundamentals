@@ -118,39 +118,4 @@ public class BinaryTree {
         int rightPart = _findMin(n.right);
         return Math.min(Math.min(rootValue, leftPart), rightPart);
     }
-
-    public Iterator iterator() {
-        return new BinaryTreeIterator();
-    }
-
-    private class BinaryTreeIterator implements Iterator {
-        private Stack<Node> s;
-
-        public BinaryTreeIterator() {
-            if (root != null) {
-                s.push(root);
-            }
-        }
-
-        public boolean hasNext() {
-            if (s.isEmpty()) {
-                return false;
-            }
-            return true;
-        }
-
-        public Object next() {
-            if (hasNext()) {
-                Node ret = s.pop();
-                if (ret.right != null) {
-                    s.push(ret.right);
-                }
-                if (ret.left != null) {
-                    s.push(ret.left);
-                }
-                return ret.data;
-            }
-            return null;
-        }
-    }
 }

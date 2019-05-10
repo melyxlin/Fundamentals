@@ -140,41 +140,4 @@ public class LinkedList
             previousNode.next = other.head;
         }
     }
-
-    public Iterator iterator() {
-        return new LinkedListIterator();
-    }
-
-    private class LinkedListIterator implements Iterator{
-        private Node currentNode;
-
-        public LinkedListIterator() {
-            this.currentNode = head;
-        }
-
-        public boolean HasNext()
-        {
-            if(this.currentNode == null)
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public Object next() {
-            if (hasNext()) {
-                Node ret = currentNode;
-                this.currentNode = this.currentNode.next;
-                return ret.data;
-            } else {
-                return null;
-            }
-        }
-
-        @Override
-        public boolean hasNext() {
-            return false;
-        }
-    }
-
 }

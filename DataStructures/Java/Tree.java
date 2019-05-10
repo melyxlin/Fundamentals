@@ -56,39 +56,4 @@ public class Tree {
         ret += n.data + "/n";
         return ret;
     }
-
-    public Iterator iterator() {
-        return new TreeIterator();
-    }
-
-    private class TreeIterator implements Iterator {
-        private Stack<Node> s;
-
-        public TreeIterator() {
-            if (root != null) {
-                s.push(root);
-            }
-        }
-
-        public boolean hasNext()
-        {
-            if(s.isEmpty())
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public Object next() {
-            if (hasNext()) {
-                Node ret = s.pop();
-                for (Node child : ret.children) {
-                    s.push(child);
-                }
-                return ret.data;
-            } else {
-                return 0;
-            }
-        }
-    }
 }
