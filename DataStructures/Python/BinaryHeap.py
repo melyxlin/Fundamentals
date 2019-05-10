@@ -11,14 +11,14 @@ class BinaryHeap:
         self.size += 1
         self.index = size
         self.array[index] = value
-        self.bubbleUp()
+        bubbleUp()
 
     def remove(self, value):
         retVal = self.peek()
         self.array[1] = self.array[size];
         self.array[size] = None
         self.size -= 1
-        self.bubbleDown()
+        bubbleDown()
         return retVal
 
     def bubbleDown():
@@ -32,3 +32,21 @@ class BinaryHeap:
             else:
                 break
             index = smallerChild;
+
+    def bubbleUp():
+        index = self.size
+        while self.hasParent(index) and self.array[self.parentIndex(index)] > self.array[index]:
+            swap(index, self.parentIndex(index))
+            index = self.parentIndex(index)
+
+    def hasParent(i):
+        return i > 1
+
+    def leftChildIndex(i):
+        return i * 2
+
+    def hasLeftChildIndex(i):
+        
+            
+            
+        
